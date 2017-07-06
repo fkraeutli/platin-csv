@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>PLATIN</title>
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/skruse/PLATIN/fcdcc543/css/style.css" type="text/css">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/skruse/PLATIN/fcdcc543/platin-min.js"></script>
+  </head>
+  <body>
+    <div id="platin">
+      <div id="platinMap"></div>
+    </div>
+
+    <script type="text/javascript">
+
+      var csv = window.location.hash.replace("#csv=","").replace(/\\n/g,"\n");
+      var datasets = [];
+
+      var mapDiv = document.getElementById("platinMap");
+      var map = new WidgetWrapper();
+      var mapWidget = new MapWidget(map, mapDiv);
+
+      // var timeDiv = document.getElementById("platinTime");
+      // var time = new WidgetWrapper();
+      // var timeWidget = new FuzzyTimelineWidget(time, timeDiv);
+      //
+      // var tableDiv = document.getElementById("platinTable");
+      // var table = new WidgetWrapper();
+      // var tableWidget = new TableWidget(table, tableDiv);
+
+      var data = new Dataset( GeoTemConfig.loadJson( GeoTemConfig.convertCsv( csv ) ), "Books" );
+      datasets.push( data );
+
+      map.display(datasets);
+
+    </script>
+  </body>
+</html>
