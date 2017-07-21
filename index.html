@@ -19,21 +19,22 @@
   <body>
     <div id="platin">
       <div id="platinMap"></div>
+      <div id="platinTime"></div>
     </div>
 
     <script type="text/javascript">
 
-      var csv = window.location.hash.replace("#csv=","").replace(/\\n/g,"\n");
+      var csv = window.location.hash.replace("#csv=","").replace(/\\n/g,"\n").replace(/%22/g,"\"");
       var datasets = [];
 
       var mapDiv = document.getElementById("platinMap");
       var map = new WidgetWrapper();
       var mapWidget = new MapWidget(map, mapDiv);
 
-      // var timeDiv = document.getElementById("platinTime");
-      // var time = new WidgetWrapper();
-      // var timeWidget = new FuzzyTimelineWidget(time, timeDiv);
-      //
+      var timeDiv = document.getElementById("platinTime");
+      var time = new WidgetWrapper();
+      var timeWidget = new FuzzyTimelineWidget(time, timeDiv);
+
       // var tableDiv = document.getElementById("platinTable");
       // var table = new WidgetWrapper();
       // var tableWidget = new TableWidget(table, tableDiv);
@@ -42,6 +43,7 @@
       datasets.push( data );
 
       map.display(datasets);
+      time.display(datasets);
 
     </script>
   </body>
